@@ -121,7 +121,7 @@ def is_abecedarian(word):
     """
     :param word: a word.
     :return: True - if the letters in the word appear in alphabetical order (double letters are ok).
-    False - otherwise.fsdf
+    False - otherwise.
     """
     prev_letter = word[0]
     for char in word:
