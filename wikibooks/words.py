@@ -143,7 +143,49 @@ def print_abecedarian():
             count_abc += 1
     print('Number of words which letters are in alphabetical order:', count_abc)
 
+
+def is_3doubles(word):
+    """
+    :param word: a word.
+    :return: True - if the word has three consecutive double letters.
+    False - otherwise.
+    """
+    count = 0
+    flag = 0
+    prev_letter = word[0]
+    for char in word[1:]:
+        #print(char)
+        if flag == 0:
+            if char == prev_letter:
+                count += 1
+                flag = 1
+                if count == 3:
+                    return True
+                #print(count)
+            else:
+                count = 0
+        else:
+            flag = 0
+        prev_letter = char
+
+    return False
+
+
+def print_3doubles():
+    """ Prints words that have three consecutive double letters. Prints total number of these words.
+    :return: none
+    """
+    count_3d = 0
+    for line in fin:
+        word = line.strip()
+        if is_3doubles(word):
+            print(word)
+            count_3d += 1
+    print('Number of words that have three consecutive letters:', count_3d)
+
+
 if __name__ == '__main__':
     fin = open("words.txt")
     #print(fin)
-    print_abecedarian()
+    print_3doubles()
+    #print(is_3doubles("bbaccddee"))
