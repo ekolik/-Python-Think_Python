@@ -184,8 +184,43 @@ def print_3doubles():
     print('Number of words that have three consecutive letters:', count_3d)
 
 
+def is_palindrome(number, begin, end):
+    """
+    :param number: any number
+    :param begin: what digit to start with
+    :param end: what digit to finish with
+    :return: True - if the digits between 'end' and 'start' are palindromic; False - otherwise.
+    """
+    while begin < end:
+        if number[begin] != number[end]:
+            return False
+        begin += 1
+        end -= 1
+    return True
+
+
+def print_pals():
+    """ examines all 6 digit numbers for the requirements: 1) I noticed that the last 4 digits were palindromic.
+        2) One mile later, the last 5 numbers were palindromic.
+        3) One mile after that, the middle 4 out of 6 numbers were palindromic.
+        4) One mile later, all 6 were palindromic.
+        Prints the number that was on the odometer at the step 1).
+    :return: none
+    """
+    i = 100000
+    while i < 1000000:
+        if is_palindrome(str(i), 2, 5):
+            j = i + 1
+            if is_palindrome(str(j), 1, 5):
+                j += 1
+                if is_palindrome(str(j), 1, 4):
+                    j += 1
+                    if is_palindrome(str(j), 0, 5):
+                        print(i)
+        i += 1
+
+
 if __name__ == '__main__':
-    fin = open("words.txt")
+    #fin = open("words.txt")
     #print(fin)
-    print_3doubles()
-    #print(is_3doubles("bbaccddee"))
+    print_pals()
