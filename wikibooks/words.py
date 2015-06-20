@@ -219,8 +219,48 @@ def print_pals():
                         print(i)
         i += 1
 
+def is_reverse2d(num1, num2):
+    """ The function is created specifically for the purposes of 'print_ages()'.
+    :param num1: any number 1- or 2-digit number. If the number consists of 1 digit then the function adds a zero on the left.
+    :param num2: any 2-digit number.
+    :return: True - if the reverse of 'num1' written as string is equal to 'num2' written as string.
+    False - otherwise.
+    """
+    num1 = str(num1)
+    num2 = str(num2)
+    num1 = num1.zfill(2)
+
+    return num1[::-1] == num2
+
+
+def print_ages():
+    """ The function goes through all possible ages of a child and his parent and counts how many times their ages are
+    reversible (an example of reversible ages: a child is 12, and his parent is 21). Any time the reversible ages are
+    found, the child's age is saved in a list. The function prints the list of the child's ages when there are 8 or more
+    reversible ages happened over the life.
+    :return: none
+    """
+    for i in range(1, 100):
+        count = 0
+        lst = []
+        my_age = i
+        for j in range(i+10, 110):
+            her_age = j
+            if is_reverse2d(my_age, her_age):
+                count += 1
+                lst.append(my_age)
+                #print(lst)
+            if count >= 1:
+                my_age += 1
+            else:
+                my_age = i
+
+        if count >= 8:
+            print(lst)
+
+
 
 if __name__ == '__main__':
     #fin = open("words.txt")
     #print(fin)
-    print_pals()
+    print_ages()
